@@ -8,6 +8,7 @@ const Home = () => {
       try {
         const movies = await fetchMovies();
         console.log(movies);
+        return movies;
       } catch (error) {
         console.log(error);
       }

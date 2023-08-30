@@ -15,7 +15,7 @@ export const fetchMovies = async () => {
         key: API_KEY,
       },
     });
-    return response.result;
+    return response.results;
   } catch (error) {
     console.log(error);
   }
