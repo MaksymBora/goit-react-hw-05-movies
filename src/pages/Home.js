@@ -4,12 +4,12 @@ import { fetchMovies } from '../API';
 
 const Home = () => {
   const [movieList, setMovieList] = useState([]);
-
+  console.log(movieList, 'before');
   useEffect(() => {
     const result = async () => {
       try {
         const movies = await fetchMovies();
-        setMovieList(prevState => [...prevState, ...movies]);
+        setMovieList(movies);
       } catch (error) {
         console.log(error);
       }
@@ -17,7 +17,7 @@ const Home = () => {
     result();
   }, []);
 
-  console.log(movieList);
+  console.log(movieList, 'after');
 
   return (
     <div>
