@@ -1,20 +1,19 @@
-import { NavLink, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Home from "pages/Home";
+import MoviesDetails from "../pages/MoviesDetails";
+import { Layout } from "./Layout";
+
 
 
 
 export const App = () => {
   return (
-    <div>
-      <nav>
-        <ul>
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/movies">Movies</NavLink></li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<div>Home</div>} />
-        <Route path="/movies" element={<div>Movies</div>} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={ <Layout /> }>
+        <Route index element={ <Home /> } />
+        <Route path=":movieId" element={ <MoviesDetails /> } />
+        <Route path="movies" element={ <div>Search Movie</div> } />
+      </Route>
+    </Routes>
   );
 };
