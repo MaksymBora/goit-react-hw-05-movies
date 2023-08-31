@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchByQuery } from '../API';
+import { MovieList } from 'components/MovieList';
 
 const SearchMovie = () => {
   const [queryResult, setQueryResult] = useState([]);
@@ -22,6 +23,7 @@ const SearchMovie = () => {
         <input type="text" />
         <button type="submit">Search</button>
       </form>
+      <MovieList items={queryResult} />
     </div>
   );
 };

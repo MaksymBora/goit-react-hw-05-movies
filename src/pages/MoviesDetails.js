@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
-import { fetchMovies } from '../API';
-import movieGenres from '../Genres.json';
+import { fetchMovieById } from '../API';
+// import movieGenres from '../Genres.json';
 
 const MoviesDetails = () => {
-  const [currentMovie, setCurrenMovie] = useState({});
+  const [currentMovie, setCurrenMovie] = useState([]);
   const [genres, setGenres] = useState([]);
 
   const { movieId } = useParams();
@@ -12,14 +12,9 @@ const MoviesDetails = () => {
   useEffect(() => {
     const result = async () => {
       try {
-        const movies = await fetchMovies();
-
-        const movieById = movies.find(movie => movie.id === parseInt(movieId));
-
-        if (movieById) {
-          setCurrenMovie({ ...movieById });
-          setGenres([...movieById.genre_ids]);
-        }
+        const movie = await fetchMovieById(movieId);
+        setCurrenMovie(movie);
+        setGenres([...movie.genres]);
       } catch (error) {
         console.log(error);
       }
@@ -27,14 +22,7 @@ const MoviesDetails = () => {
     result();
   }, [movieId]);
 
-  const getGenres = () => {
-    return movieGenres.genres.map(genre => {
-      return genres.includes(genre.id) ? genre.name : null;
-    });
-  };
-  const showGenres = getGenres().filter(genre => genre !== null);
-
-  const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
+  const imgBaseUrl = 'https://image.tmdb.org/t/p/w500';
   const { poster_path, title, vote_average, overview } = currentMovie;
 
   return (
@@ -49,8 +37,8 @@ const MoviesDetails = () => {
       <p>{overview}</p>
       <h2>Genres</h2>
       <div>
-        {showGenres.map(genre => {
-          return <p key={genre}>{genre}</p>;
+        {genres.map(genre => {
+          return <p key={genre.id}>{genre.name}</p>;
         })}
       </div>
 
