@@ -1,10 +1,13 @@
+import { lazy } from 'react';
 import { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
 import { fetchMovies } from '../API';
-import { MovieList } from 'components/MovieList';
+import { useLocation } from 'react-router-dom';
+
+const MovieList = lazy(() => import('../components/MovieList'));
 
 const Home = () => {
   const [movieList, setMovieList] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const result = async () => {
@@ -24,7 +27,7 @@ const Home = () => {
   return (
     <div>
       <h2>Trending today</h2>
-      <MovieList items={movieList} />
+      <MovieList items={movieList} stateItem={{ from: location }} />
     </div>
   );
 };

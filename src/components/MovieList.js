@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
 
-export const MovieList = ({ items }) => {
+const MovieList = ({ items, stateItem }) => {
   return (
     <>
       <ul>
         {items.map(movie => {
           return (
             <li key={movie.id}>
-              <Link to={`${movie.id}`}>{movie.original_title}</Link>
+              <Link to={`${movie.id}`} state={stateItem}>
+                {movie.original_title}
+              </Link>
             </li>
           );
         })}
@@ -15,3 +17,5 @@ export const MovieList = ({ items }) => {
     </>
   );
 };
+
+export default MovieList;

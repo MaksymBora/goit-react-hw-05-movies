@@ -1,14 +1,16 @@
+import { lazy } from 'react';
 import { useEffect, useState } from 'react';
 import { fetchByQuery } from '../API';
-import { MovieList } from 'components/MovieList';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
+
+const MovieList = lazy(() => import('../components/MovieList'));
 
 const SearchMovie = () => {
   const [query, setQuery] = useState('');
   const [queryResult, setQueryResult] = useState([]);
+  const location = useLocation();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const inputResult = searchParams.get('searchQuery') ?? '';
 
   useEffect(() => {
     const result = async () => {
@@ -23,6 +25,8 @@ const SearchMovie = () => {
     result();
   }, [query]);
 
+  const inputResult = searchParams.get('searchQuery') ?? '';
+
   const updateQueryString = e => {
     const searchValue = e.target.value;
 
@@ -32,7 +36,7 @@ const SearchMovie = () => {
 
   const onSubmitResult = e => {
     e.preventDefault();
-    // const inputResult = searchParams.get('searchQuery');
+
     setQuery(inputResult);
   };
 
@@ -42,7 +46,7 @@ const SearchMovie = () => {
         <input type="text" value={inputResult} onChange={updateQueryString} />
         <button type="submit">Search</button>
       </form>
-      <MovieList items={queryResult} />
+      <MovieList items={queryResult} stateItem={{ from: location }} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Suspense } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from '../API';
 // import movieGenres from '../Genres.json';
 
@@ -8,6 +9,8 @@ const MoviesDetails = () => {
   const [genres, setGenres] = useState([]);
 
   const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkLocation = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
     const result = async () => {
@@ -27,6 +30,8 @@ const MoviesDetails = () => {
 
   return (
     <div>
+      <Link to={backLinkLocation.current}>Back</Link>
+
       <img src={imgBaseUrl + poster_path} alt={title} />
       <h2>{title}</h2>
       <p>
@@ -51,7 +56,9 @@ const MoviesDetails = () => {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loadind...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
