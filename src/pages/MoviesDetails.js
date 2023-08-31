@@ -35,14 +35,16 @@ const MoviesDetails = () => {
   const showGenres = getGenres().filter(genre => genre !== null);
 
   const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
-  const { poster_path, title, popularity, overview } = currentMovie;
-  const userScope = ((popularity / 1000) * 100).toFixed(0);
+  const { poster_path, title, vote_average, overview } = currentMovie;
 
   return (
     <div>
       <img src={imgBaseUrl + poster_path} alt={title} />
       <h2>{title}</h2>
-      <p>User score: {userScope}%</p>
+      <p>
+        User score:{' '}
+        {vote_average ? currentMovie.vote_average.toFixed(1) : 'N/A'}%
+      </p>
       <h2>Overview</h2>
       <p>{overview}</p>
       <h2>Genres</h2>
