@@ -8,7 +8,7 @@ const SearchMovie = () => {
   const [queryResult, setQueryResult] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const inputResult = searchParams.get('searchQuery');
+  const inputResult = searchParams.get('searchQuery') ?? '';
 
   useEffect(() => {
     const result = async () => {
@@ -23,20 +23,23 @@ const SearchMovie = () => {
     result();
   }, [query]);
 
+  const updateQueryString = e => {
+    const searchValue = e.target.value;
+
+    const searchParam = searchValue !== '' ? { searchQuery: searchValue } : {};
+    setSearchParams(searchParam);
+  };
+
   const onSubmitResult = e => {
     e.preventDefault();
-    const inputResult = searchParams.get('searchQuery');
+    // const inputResult = searchParams.get('searchQuery');
     setQuery(inputResult);
   };
 
   return (
     <div>
       <form onSubmit={onSubmitResult}>
-        <input
-          type="text"
-          value={inputResult}
-          onChange={e => setSearchParams({ searchQuery: e.target.value })}
-        />
+        <input type="text" value={inputResult} onChange={updateQueryString} />
         <button type="submit">Search</button>
       </form>
       <MovieList items={queryResult} />
