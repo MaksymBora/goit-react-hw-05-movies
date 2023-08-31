@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from '../API';
-// import movieGenres from '../Genres.json';
 
 const MoviesDetails = () => {
   const [currentMovie, setCurrenMovie] = useState([]);
