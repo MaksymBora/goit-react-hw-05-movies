@@ -60,3 +60,24 @@ export const fetchReview = async id => {
     console.log(error);
   }
 };
+
+export const fetchByQuery = async query => {
+  try {
+    const response = await axios.get(
+      `search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+      {
+        headers: {
+          accept: 'application/json',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZjZjZmM3NjljMjA1N2IwMGY5YzQxNDgxZTE0Zjk1ZiIsInN1YiI6IjY0OWIwYzQxMGU1YWJhMDEzOWRlOThhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RgrZWZjw6R6HE8zHjFBAbKz3jQPlE2t--sCg4ktddXs',
+        },
+        params: {
+          key: API_KEY,
+        },
+      }
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
