@@ -1,6 +1,5 @@
-import { Suspense } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from '../../API';
 import { MDetails } from 'components/MDetails/MDetails';
 import { BackLink, Wrapper, ContentWrapper } from './MovieDetails.styled';
