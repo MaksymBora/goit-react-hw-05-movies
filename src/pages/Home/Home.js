@@ -1,9 +1,10 @@
 import { lazy } from 'react';
 import { useEffect, useState } from 'react';
-import { fetchMovies } from '../API';
+import { fetchMovies } from '../../API';
 import { useLocation } from 'react-router-dom';
+import { Title } from './Home.styled';
 
-const MovieList = lazy(() => import('../components/MovieList/MovieList'));
+const MovieList = lazy(() => import('../../components/MovieList/MovieList'));
 
 const Home = () => {
   const [movieList, setMovieList] = useState([]);
@@ -26,6 +27,7 @@ const Home = () => {
 
   return (
     <div>
+      <Title>Trending today</Title>
       <MovieList items={movieList} stateItem={{ from: location }} />
     </div>
   );

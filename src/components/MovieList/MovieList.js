@@ -1,10 +1,9 @@
-import { Title, List, Item, Poster, MovieLink } from './MovieList.styled';
+import { List, Item, Poster, MovieLink } from './MovieList.styled';
 
 const MovieList = ({ items, stateItem }) => {
   const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
   return (
     <>
-      <Title>Trending today</Title>
       <List>
         {items.map(movie => {
           return (

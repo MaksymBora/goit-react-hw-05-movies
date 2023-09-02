@@ -24,14 +24,17 @@ export const NavLinkHeader = styled(NavLink)`
   justify-content: center;
   color: #000;
   border-radius: 8px;
-  transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+  transition: background-color 250ms ease-in-out, color 250ms ease-in-out,
+    text-shadow 250ms ease-in-out;
 
   &.active {
     color: #fff;
-    background-color: #000;
+    text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
+    background: rgba(122, 184, 147, 1);
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: yellow;
+    text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
+    background: rgba(122, 184, 147, 1);
   }
 `;

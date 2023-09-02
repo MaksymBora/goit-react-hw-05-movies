@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Title = styled.h2`
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 20px;
-`;
-
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;

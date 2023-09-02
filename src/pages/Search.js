@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { useEffect, useState } from 'react';
 import { fetchByQuery } from '../API';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { SearchBar } from 'components/SearchBar';
+import { SearchBar } from 'components/Searchbar/SearchBar';
 
 const MovieList = lazy(() => import('../components/MovieList/MovieList'));
 
