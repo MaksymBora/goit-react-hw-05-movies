@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { useEffect, useState } from 'react';
 import { fetchByQuery } from '../API';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { SearchBar } from 'components/SearchBar';
 
 const MovieList = lazy(() => import('../components/MovieList'));
 
@@ -34,7 +35,7 @@ const SearchMovie = () => {
     setSearchParams(searchParam);
   };
 
-  const onSubmitResult = e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     setQuery(inputResult);
@@ -42,10 +43,11 @@ const SearchMovie = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmitResult}>
-        <input type="text" value={inputResult} onChange={updateQueryString} />
-        <button type="submit">Search</button>
-      </form>
+      <SearchBar
+        onSubmit={handleSubmit}
+        inputResult={inputResult}
+        queryString={updateQueryString}
+      />
       <MovieList items={queryResult} stateItem={{ from: location }} />
     </div>
   );
