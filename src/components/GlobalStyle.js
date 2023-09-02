@@ -38,5 +38,9 @@ img {
     height: auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 
 `;

@@ -4,7 +4,7 @@ import { fetchByQuery } from '../API';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { SearchBar } from 'components/SearchBar';
 
-const MovieList = lazy(() => import('../components/MovieList'));
+const MovieList = lazy(() => import('../components/MovieList/MovieList'));
 
 const SearchMovie = () => {
   const [query, setQuery] = useState('');

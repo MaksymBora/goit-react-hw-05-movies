@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { fetchMovies } from '../API';
 import { useLocation } from 'react-router-dom';
 
-const MovieList = lazy(() => import('../components/MovieList'));
+const MovieList = lazy(() => import('../components/MovieList/MovieList'));
 
 const Home = () => {
   const [movieList, setMovieList] = useState([]);
@@ -26,7 +26,6 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Trending today</h2>
       <MovieList items={movieList} stateItem={{ from: location }} />
     </div>
   );
