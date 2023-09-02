@@ -1,6 +1,7 @@
 import { fetchCast } from 'API';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { CastList, Img } from './Cast.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -21,18 +22,18 @@ const Cast = () => {
   const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
   return (
     <div>
-      <ul>
+      <CastList>
         {cast.map(actor => {
           const { name, profile_path, character, credit_id } = actor;
           return (
             <li key={credit_id}>
-              <img src={imgBaseUrl + profile_path} alt={name} />
+              <Img src={imgBaseUrl + profile_path} alt={name} />
               <p>{name}</p>
               <p>{character}</p>
             </li>
           );
         })}
-      </ul>
+      </CastList>
     </div>
   );
 };

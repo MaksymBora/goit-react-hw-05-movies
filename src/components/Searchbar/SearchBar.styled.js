@@ -84,7 +84,7 @@ export const Input = styled.input`
 export const Button = styled.button`
   border: none;
   border-radius: 4px;
-  padding: 10px;
+  padding: 11px;
   color: #fff;
   text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
   background: rgba(122, 184, 147, 1);

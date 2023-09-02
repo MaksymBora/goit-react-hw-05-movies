@@ -1,8 +1,9 @@
 import { Suspense } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-import { fetchMovieById } from '../API';
-import { MDetails } from 'components/MDetails';
+import { fetchMovieById } from '../../API';
+import { MDetails } from 'components/MDetails/MDetails';
+import { BackLink, Wrapper, ContentWrapper } from './MovieDetails.styled';
 
 const MoviesDetails = () => {
   const [currentMovie, setCurrenMovie] = useState([]);
@@ -25,27 +26,14 @@ const MoviesDetails = () => {
     result();
   }, [movieId]);
 
-  // const imgBaseUrl = 'https://image.tmdb.org/t/p/w500';
-  // const { poster_path, title, vote_average, overview } = currentMovie;
-
   return (
-    <div>
-      <Link to={backLinkLocation.current}>Back</Link>
+    <Wrapper>
+      <BackLink to={backLinkLocation.current}>Back</BackLink>
 
-      <MDetails items={currentMovie} genres={genres} />
-
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Suspense fallback={<div>Loadind...</div>}>
-        <Outlet />
-      </Suspense>
-    </div>
+      <ContentWrapper>
+        <MDetails items={currentMovie} genres={genres} />
+      </ContentWrapper>
+    </Wrapper>
   );
 };
 

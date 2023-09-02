@@ -7,6 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 	margin: 0;
+  font-family: 'Open Sans', sans;
 	color: #000;
   }
 
