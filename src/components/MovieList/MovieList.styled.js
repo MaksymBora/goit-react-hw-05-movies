@@ -19,6 +19,8 @@ export const Item = styled.li`
 `;
 
 export const Poster = styled.img`
+  margin-left: auto;
+  margin-right: auto;
   max-height: 100%;
   margin-bottom: 5px;
   border-radius: 4px;

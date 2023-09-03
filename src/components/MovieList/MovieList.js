@@ -8,8 +8,11 @@ const MovieList = ({ items, stateItem }) => {
         {items.map(movie => {
           return (
             <Item key={movie.id}>
-              <Poster src={imgBaseUrl + movie.poster_path} alt={movie.title} />
               <MovieLink to={`${movie.id}`} state={stateItem}>
+                <Poster
+                  src={imgBaseUrl + movie.poster_path}
+                  alt={movie.title}
+                />
                 {movie.original_title}
               </MovieLink>
             </Item>
