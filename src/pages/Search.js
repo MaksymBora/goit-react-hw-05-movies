@@ -9,11 +9,41 @@ const MovieList = lazy(() => import('../components/MovieList/MovieList'));
 const SearchMovie = () => {
   const [query, setQuery] = useState('');
   const [queryResult, setQueryResult] = useState([]);
+
   const location = useLocation();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    const input = searchParams.get('searchQuery');
+
+    if (input !== null) {
+      const result = async () => {
+        try {
+          const result = await fetchByQuery(input);
+          setQueryResult(result);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      result();
+    }
+  }, []);
+
+  const inputResult = searchParams.get('searchQuery') ?? '';
+
+  const updateQueryString = e => {
+    const searchValue = e.target.value;
+
+    const searchParam = searchValue !== '' ? { searchQuery: searchValue } : {};
+    setSearchParams(searchParam);
+    setQuery(inputResult);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
     const result = async () => {
       try {
         const result = await fetchByQuery(query);
@@ -24,28 +54,13 @@ const SearchMovie = () => {
     };
 
     result();
-  }, [query]);
-
-  const inputResult = searchParams.get('searchQuery') ?? '';
-
-  const updateQueryString = e => {
-    const searchValue = e.target.value;
-
-    const searchParam = searchValue !== '' ? { searchQuery: searchValue } : {};
-    setSearchParams(searchParam);
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    setQuery(inputResult);
   };
 
   return (
     <div>
       <SearchBar
         onSubmit={handleSubmit}
-        inputResult={inputResult}
+        inputData={inputResult}
         queryString={updateQueryString}
       />
       <MovieList items={queryResult} stateItem={{ from: location }} />

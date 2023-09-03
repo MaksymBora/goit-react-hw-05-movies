@@ -1,19 +1,19 @@
 import { Input, InputWrapper, Button } from './SearchBar.styled';
 
-export const SearchBar = ({ onSubmit, inputResult, queryString }) => {
+export const SearchBar = ({ onSubmit, inputData, queryString }) => {
   return (
     <form onSubmit={onSubmit}>
       <InputWrapper>
         <Input
-          id="planet"
+          id="movies"
           type="text"
           name="search"
-          value={inputResult}
+          value={inputData}
           onChange={queryString}
           placeholder="Probably Comedy"
           autoComplete="off"
         />
-        <label for="planet">Enjoy</label>
+        <label htmlFor="movies">Enjoy</label>
       </InputWrapper>
       <Button type="submit">Search</Button>
     </form>
