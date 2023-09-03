@@ -1,6 +1,6 @@
 import { Input, InputWrapper, Button } from './SearchBar.styled';
 
-export const SearchBar = ({ onSubmit, inputData, queryString }) => {
+export const SearchBar = ({ onSubmit, inputData, queryString, onChange }) => {
   return (
     <form onSubmit={onSubmit}>
       <InputWrapper>
@@ -9,7 +9,7 @@ export const SearchBar = ({ onSubmit, inputData, queryString }) => {
           type="text"
           name="search"
           value={inputData}
-          onChange={queryString}
+          onChange={onChange}
           placeholder="Probably Comedy"
           autoComplete="off"
         />
