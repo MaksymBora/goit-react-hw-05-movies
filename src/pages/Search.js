@@ -1,7 +1,9 @@
 import { lazy } from 'react';
 import { useEffect, useState } from 'react';
-import { fetchByQuery } from '../API';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { fetchByQuery } from '../API';
+import toast, { Toaster } from 'react-hot-toast';
+
 import { SearchBar } from 'components/Searchbar/SearchBar';
 
 const MovieList = lazy(() => import('../components/MovieList/MovieList'));
@@ -24,7 +26,7 @@ const SearchMovie = () => {
         const result = await fetchByQuery(input);
         setQueryResult(result);
       } catch (error) {
-        console.log(error);
+        toast.error(error);
       }
     };
 
@@ -37,10 +39,18 @@ const SearchMovie = () => {
     e.preventDefault();
 
     if (query === '') {
-      return alert(`Sorry, but we didn't find any results for "${input}"`);
+      return toast.error('Sorry, please provide a search word');
     }
-
     setSearchParams({ searchQuery: query });
+    toast.success(
+      <div>
+        I like <b>{query}</b> too!
+      </div>,
+      {
+        duration: 4000,
+        icon: '🔥',
+      }
+    );
   };
 
   const handleInputChange = e => {
@@ -55,6 +65,7 @@ const SearchMovie = () => {
         onChange={handleInputChange}
       />
       <MovieList items={queryResult} stateItem={{ from: location }} />
+      <Toaster position="top-right" reverseOrder={true} />
     </div>
   );
 };
