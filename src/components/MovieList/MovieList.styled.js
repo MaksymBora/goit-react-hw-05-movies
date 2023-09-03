@@ -22,7 +22,7 @@ export const Poster = styled.img`
   margin-left: auto;
   margin-right: auto;
   max-height: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   border-radius: 4px;
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.24);
 `;
