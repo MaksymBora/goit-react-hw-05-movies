@@ -31,8 +31,6 @@ const SearchMovie = () => {
     };
 
     result();
-
-    console.log(input);
   }, [input]);
 
   const handleSubmit = e => {
