@@ -29,7 +29,9 @@ const SearchMovie = () => {
 
       result();
     }
-  }, []);
+
+    console.log(input);
+  }, [searchParams]);
 
   const inputResult = searchParams.get('searchQuery') ?? '';
 
@@ -38,6 +40,7 @@ const SearchMovie = () => {
 
     const searchParam = searchValue !== '' ? { searchQuery: searchValue } : {};
     setSearchParams(searchParam);
+
     setQuery(inputResult);
   };
 
