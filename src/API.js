@@ -1,18 +1,15 @@
 import axios from 'axios';
 
-const API_KEY = 'b580e55a4551b421271bf131dd03ab39';
+const API_KEY = '?api_key=7f6cfc769c2057b00f9c41481e14f95f';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 export const fetchMovies = async () => {
   try {
-    const response = await axios.get('/trending/movie/day', {
+    const response = await axios.get(`/trending/movie/day${API_KEY}`, {
       headers: {
         accept: 'application/json',
         Authorization:
           'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZjZjZmM3NjljMjA1N2IwMGY5YzQxNDgxZTE0Zjk1ZiIsInN1YiI6IjY0OWIwYzQxMGU1YWJhMDEzOWRlOThhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RgrZWZjw6R6HE8zHjFBAbKz3jQPlE2t--sCg4ktddXs',
-      },
-      params: {
-        key: API_KEY,
       },
     });
 
@@ -79,10 +76,10 @@ export const fetchReview = async id => {
   }
 };
 
-export const fetchByQuery = async query => {
+export const fetchByQuery = async (query, page = 1) => {
   try {
     const response = await axios.get(
-      `search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+      `search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`,
       {
         headers: {
           accept: 'application/json',
@@ -94,7 +91,7 @@ export const fetchByQuery = async query => {
         },
       }
     );
-    return response.data.results;
+    return response.data;
   } catch (error) {
     console.log(error);
   }
