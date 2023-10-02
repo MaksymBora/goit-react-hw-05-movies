@@ -1,13 +1,13 @@
 import { lazy } from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { fetchByQuery } from '../API';
+import { fetchByQuery } from '../../API';
 import toast, { Toaster } from 'react-hot-toast';
 import Pagination from '@mui/material/Pagination';
-
 import { SearchBar } from 'components/Searchbar/SearchBar';
+import { PaginationWrapper } from './Search.styled';
 
-const MovieList = lazy(() => import('../components/MovieList/MovieList'));
+const MovieList = lazy(() => import('../../components/MovieList/MovieList'));
 
 const SearchMovie = () => {
   const [queryResult, setQueryResult] = useState([]);
@@ -73,14 +73,27 @@ const SearchMovie = () => {
         onChange={handleInputChange}
       />
       <MovieList items={queryResult} stateItem={{ from: location }} />
-      <Toaster position="top-right" reverseOrder={true} />
+
       {queryResult.length !== 0 && (
-        <Pagination
-          count={totalPages}
-          color="primary"
-          onClick={handleNexPage}
-        />
+        <PaginationWrapper>
+          <Pagination
+            count={totalPages}
+            color="primary"
+            onClick={handleNexPage}
+            size="large"
+            sx={{
+              '& .Mui-selected': {
+                bgcolor: 'rgb(122, 184, 146)',
+              },
+              '& .Mui-selected:hover': {
+                bgcolor: 'rgb(112, 168, 134)',
+              },
+            }}
+          />
+        </PaginationWrapper>
       )}
+
+      <Toaster position="top-right" reverseOrder={true} />
     </div>
   );
 };
